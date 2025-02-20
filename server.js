@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from './config/connectDB.js';
-import gallaryRoutes from './routes/galleryroutes.js'
+import gallaryRoutes from './routes/galleryroutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,7 +17,6 @@ dotenv.config();
 // Database connection
 connectDB();
 
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -29,21 +28,10 @@ const __filename = fileURLToPath(
 const __dirname = path.dirname(__filename);
 
 // Routes
-
 app.use('/api/v1/gallery', gallaryRoutes);
 
-
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-});
-
-// Serve static files from the "galleryupload" directory
+// Serve static files from the "galleryuploads" directory
 app.use('/galleryuploads', express.static('galleryuploads'));
-
-
-
 
 // Define the port
 const PORT = process.env.PORT || 8045;
