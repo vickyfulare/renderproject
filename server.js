@@ -36,7 +36,7 @@ const __dirname = path.dirname(__filename);
 app.use('/api/v1/gallery', gallaryRoutes);
 
 // Serve static files from the "galleryuploads" directory
-app.use('./galleryuploads', express.static('galleryuploads'));
+app.use('/galleryuploads', express.static('galleryuploads'));
 
 
 
