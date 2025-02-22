@@ -18,7 +18,12 @@ dotenv.config();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(morgan('dev'));
 
@@ -31,7 +36,8 @@ const __dirname = path.dirname(__filename);
 app.use('/api/v1/gallery', gallaryRoutes);
 
 // Serve static files from the "galleryuploads" directory
-app.use('/galleryuploads', express.static(path.join(__dirname, 'galleryuploads')));
+app.use('./galleryuploads', express.static('galleryuploads'));
+
 
 
 // Define the port
