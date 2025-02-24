@@ -3,7 +3,7 @@ import express from 'express'
 // import { createGalleryController, deleteGalleryController, getAllGalleryController } from '../controllers/gallerycontroller.js';
 // import multer from 'multer';
 // import path from 'path';
-import { createGalleryController, getAllGalleryController, getGalleryImageController } from "../controllers/gallerycontroller.js"
+import { createGalleryController, deleteGalleryController, getAllGalleryController, getGalleryImageController } from "../controllers/gallerycontroller.js"
 //const router = express.Router()
 //     // Set up multer storage for image uploads
 // const storage = multer.diskStorage({
@@ -48,5 +48,7 @@ router.post(
 
 router.get("/get-gallery", getAllGalleryController);
 router.get("/get-gallery-image/:id", getGalleryImageController);
+router.delete("/delete-gallery/:id", deleteGalleryController);
+
 
 export default router;
