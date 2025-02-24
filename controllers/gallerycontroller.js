@@ -64,6 +64,20 @@ export const getAllGalleryController = async(req, res) => {
     }
 };
 
+export const getGalleryImageController = async(req, res) => {
+    try {
+        const galleryItem = await Gallery.findById(req.params.id);
+        if (!galleryItem || !galleryItem.g_image || !galleryItem.g_image.data) {
+            return res.status(404).json({ message: "Image not found" });
+        }
+
+        res.set("Content-Type", galleryItem.g_image.contentType);
+        return res.send(galleryItem.g_image.data);
+    } catch (error) {
+        console.error("Error fetching image:", error);
+        res.status(500).json({ message: "Error fetching image", error });
+    }
+};
 // ✅ Delete Gallery Item
 export const deleteGalleryController = async(req, res) => {
     try {
