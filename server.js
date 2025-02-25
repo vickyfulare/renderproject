@@ -38,7 +38,11 @@ app.use('/api/v1/gallery', gallaryRoutes);
 // Serve static files from the "galleryuploads" directory
 app.use('/galleryuploads', express.static('galleryuploads'));
 
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+});
 
 // Define the port
 const PORT = process.env.PORT || 8045;
